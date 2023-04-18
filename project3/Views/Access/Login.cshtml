@@ -1,0 +1,67 @@
+﻿@model project3.Models.LoginVM;
+
+@{
+    Layout = "_LogLayout";
+}
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="login-register-form">
+                    <div class="form-holder">
+                        <div class="form-row form-head">
+                            <div class="col-xs-6">
+                                <div class="site-brand" style="color:#ffc600 ; font-size: 25px;"> <b>Felix.com</b> </div>
+                            </div>
+                            <div class="col-xs-6 form-links">
+                                <div class="form-title"><a class="link-to" asp-action="CompanyLogin"><img src="images/server6.svg" alt="">Company Area</a></div>
+                                <div class="form-title"><img src="images/lock.svg" alt="">Client Area</div>
+                            </div>
+                        </div>
+                        <div class="form-row form-links">
+                            <div class="col-xs-12">
+                                <a href="#"  class="link-to active">Login</a> or <a asp-action="user_register" asp-controller="User" class="link-to">Register</a>
+                            </div>
+                        </div>
+                        <form asp-controller="Access" asp-action="Login" method="post">
+                            @if (ViewData["ValidateMessage"] != null)
+                            {
+                                <div>
+                                    <div class="col-xs-12 alert alert-danger">
+                                        <span><b>Sorry!</b> - @ViewData["ValidateMessage"]</span>
+                                    </div>
+                                </div>
+                            }
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" asp-for="Email">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" asp-for="PassWord">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-6">
+                                    <label>
+                                        <input type="checkbox" asp-for="KeepLoggedIn" />
+                                        Keep me logged In.
+                                    </label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="submit-holder">
+                                        <button type="submit">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

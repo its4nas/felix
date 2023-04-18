@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Message>
+@{
+    Layout = "_AdminDashboardLayout";
+}
+
+
+
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="mt-0 header-title mb-4">Latest Messages</h4>
+            <div class="latest-massage">
+                @foreach(Message message in Model)
+                {
+                <br />
+                <a href="#" class="latest-message-list">
+                    <div class="border-bottom position-relative">
+                        <div class="float-left user mr-3">
+                            <h5 class="bg-primary text-center rounded-circle text-dark mt-0">v</h5>
+                        </div>
+                        <div class="message-time">
+                            <p class="m-0 text-muted">@message.name</p>
+                        </div>
+                        <div class="massage-desc">
+                            <h5 class="font-14 mt-0 text-dark">@message.email</h5>
+                            <p class="text-muted">@message.message</p>
+                        </div>
+                    </div>
+                </a>
+                }
+            </div>
+            
+        </div>
+    </div>
+            
+</div>
+<!-- end col -->

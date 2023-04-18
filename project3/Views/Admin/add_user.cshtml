@@ -1,0 +1,106 @@
+﻿@model user
+@{
+    Layout = "_AdminDashboardLayout";
+}
+
+
+<!-- boooooooooooooooooooooooooooooooooooooooooooooooooody -->
+<form method="post" asp-controller="Admin" asp-action="add_user" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                
+                    <h2 class="mt-0 header-title">Add New User</h2>
+                    <br>
+                    @if(ViewData["Message"]!=null)
+                    {
+                        <div class="form-row">
+                            <div class="col-xs-12">
+                                <div class="col-xs-12 alert alert-danger">
+                                    <span>@ViewData["Message"]</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-sm-2 col-form-label">User Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" asp-for="user_name">
+                            <span style="color:red;" asp-validation-for="user_name"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="example-tel-input" class="col-sm-2 col-form-label">User Email</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="email" asp-for="user_email" >
+                            <span style="color:red;" asp-validation-for="user_email"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-number-input" class="col-sm-2 col-form-label">Phone</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="Text" asp-for="user_phone" >
+                            <span style="color:red;" asp-validation-for="user_phone"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-number-input" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="Text" asp-for="user_password">
+                            <span style="color:red;" asp-validation-for="user_password"></span>
+                        </div>
+                    </div>
+                                                
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Gender</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" asp-for="gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <span style="color:red;" asp-validation-for="gender"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-number-input" class="col-sm-2 col-form-label">Age</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" asp-for="user_age">
+                            <span style="color:red;" asp-validation-for="user_age"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-number-input" class="col-sm-2 col-form-label">User Role</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="Text" asp-for="user_role">
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-3">
+            
+                            <!-- Simple card -->
+                            <div class="card m-b-30">
+                                <div class="card-body">
+                                     <input class="form-control" type="file" asp-for="user_image">
+                                </div>
+                            </div>
+            
+                     </div><!-- end col -->
+
+
+                    <div class="col-xs-6">
+                        <div class="submit-holder">
+                            <button type="submit" name="submit">Add User</button>
+                        </div>
+                    </div>
+                                                
+                </div>
+            </div>
+        </div> <!-- end col -->
+    </div> <!-- end row -->      
+
+</form>
+
+

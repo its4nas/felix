@@ -1,0 +1,301 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>Felix Dashboard</title>
+        <meta content="Admin Dashboard" name="description" />
+        <meta content="ThemeDesign" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <link rel="shortcut icon" href="~/assets/images/favicon.ico">
+
+        <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="~/assets/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="~/assets/css/style.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+
+    <body class="fixed-left">
+
+        <!-- Loader -->
+        <div id="preloader">
+            <div id="status">
+                <div class="spinner">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Begin page -->
+        <div id="wrapper">
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left side-menu">
+                <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+                    <i class="mdi mdi-close"></i>
+                </button>
+
+                <div class="left-side-logo d-block d-lg-none">
+                    <b style="font-size: 30px; text-align: center; padding: 50px; color: #ffc600;">Felix.com</b> 
+                </div>
+                <div class="sidebar-inner slimscrollleft">
+                    
+                    <div id="sidebar-menu">
+                        <ul>
+                            <li class="menu-title">Main</li>
+
+                            <li>
+                                <a asp-action="Dashboard" asp-controller="Admin" class="waves-effect">
+                                    <i class="dripicons-home"></i>
+                                    <span> Dashboard <span class="badge badge-success badge-pill float-right">3</span></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-action="add_job" asp-controller="Admin" class="waves-effect">
+                                    <i class="dripicons-briefcase"></i>
+                                    <span> Add Job</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-action="job_list" asp-controller="Admin" class="waves-effect">
+                                    <i class="dripicons-archive"></i>
+                                    <span> Job List</span>
+                                </a>
+                            </li>
+ 
+                            
+                            <li>
+                                <a asp-action="Message" asp-controller="Admin" class="waves-effect">
+                                    <i class="dripicons-document"></i>
+                                    <span> Messages</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-action="add_company" asp-controller="Admin" class="waves-effect">
+                                    <i class="dripicons-archive"></i>
+                                    <span>Add Company</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-action="company_list" asp-controller="Admin" class="waves-effect">
+                                    <i class="dripicons-archive"></i>
+                                    <span> Company List</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-action="application_list" asp-controller="Admin" class="waves-effect">
+                                    <i class="dripicons-archive"></i>
+                                    <span> Application List</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-action="user_list" asp-controller="Admin" class="waves-effect">
+                                    <i class="dripicons-archive"></i>
+                                    <span> User List</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-action="add_user" asp-controller="Admin" class="waves-effect">
+                                    <i class="dripicons-archive"></i>
+                                    <span> Add User</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div> <!-- end sidebarinner -->
+            </div>
+            <!-- Left Sidebar End -->
+
+            <!-- Start right Content here -->
+
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+
+                    <!-- Top Bar Start -->
+                    <div class="topbar">
+
+                        <div class="topbar-left	d-none d-lg-block">
+                            <div class="text-center">
+                                <b style="font-size: 30px; text-align: center; color: #ffc600;">Felix.com</b>
+                            </div>
+                        </div>
+
+                        <nav class="navbar-custom">
+
+                             <!-- Search input -->
+                             <div class="search-wrap" id="search-wrap">
+                                <div class="search-bar">
+                                    <input class="search-input" type="search" placeholder="Search" />
+                                    <a href="#" class="close-search toggle-search" data-target="#search-wrap">
+                                        <i class="mdi mdi-close-circle"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <ul class="list-inline float-right mb-0">
+                                @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="list-inline-item dropdown notification-list nav-user">
+                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="false" aria-expanded="false">
+                                        @if (Accessor.HttpContext.Session.GetString("UserImage") != null)
+                                        {
+                                            <img src="~/UserImages/@Accessor.HttpContext.Session.GetString("UserImage")" alt="users" class="rounded-circle">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle">
+
+
+                                        }
+                                        <span class="d-none d-md-inline-block ml-1">@Accessor.HttpContext.Session.GetString("UserName") <i class="mdi mdi-chevron-down"></i> </span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
+                                        @*<a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
+                                        <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted"></i> My Wallet</a>
+                                        <a class="dropdown-item" href="#"><span class="badge badge-success float-right m-t-5">5</span><i class="dripicons-gear text-muted"></i> Settings</a>
+                                        <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted"></i> Lock screen</a>
+                                        <div class="dropdown-divider"></div>*@
+                                        <a class="dropdown-item" asp-controller="User" asp-action="Logout"><i class="dripicons-exit text-muted"></i> Logout</a>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                 <a  class="btn btn-outline-danger" asp-controller="Access" asp-action="Login">Login</a>
+                            }
+
+                            </ul>
+
+                            <ul class="list-inline menu-left mb-0">
+                                <li class="list-inline-item">
+                                    <button type="button" class="button-menu-mobile open-left waves-effect">
+                                        <i class="mdi mdi-menu"></i>
+                                    </button>
+                                </li>
+                                @*<li class="list-inline-item dropdown notification-list d-none d-sm-inline-block">
+                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="false" aria-expanded="false">
+                                        Create New <i class="mdi mdi-plus"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-animated">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Separated link</a>
+                                    </div>
+                                </li>*@
+                                <li class="list-inline-item notification-list d-none d-sm-inline-block">
+                                    <a asp-action="Index" asp-controller="User" class="nav-link waves-effect">
+                                        Home
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </nav>
+
+                    </div>
+                    <!-- Top Bar End -->
+
+                    <div class="page-content-wrapper ">
+
+                        <div class="container-fluid">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="page-title-box">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-8">
+                                                <h4 class="page-title m-0">DASHBOARD</h4>
+                                            </div>
+                                            @*<div class="col-md-4">
+                                                <div class="float-right d-none d-md-block">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="ti-settings mr-1"></i> Settings
+                                                        </button>
+                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated">
+                                                            <a class="dropdown-item" href="#">Action</a>
+                                                            <a class="dropdown-item" href="#">Another action</a>
+                                                            <a class="dropdown-item" href="#">Something else here</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <a class="dropdown-item" href="#">Separated link</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                            <!-- end col -->
+                                        </div>
+                                        <!-- end row -->
+                                    </div>
+                                    <!-- end page-title-box -->
+                                </div>
+                            </div> 
+                            <!-- end page title -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (Accessor.HttpContext.Session.GetInt32("UserRole") == 1)
+                            {
+                                @RenderBody()
+                            }
+                            else
+                            {
+                                IgnoreBody();
+                                <span><h1>Unauthorized Access</h1></span>
+                            }
+                        }
+                        else
+                        {
+                            IgnoreBody();
+                            <span><h1>Must be logged in</h1></span>
+                        }
+
+
+                        </div><!-- container fluid -->
+
+                    </div> <!-- Page content Wrapper -->
+
+                </div> <!-- content -->
+
+                <footer class="footer">
+                    © 2023 Felix
+                </footer>
+
+            </div>
+            <!-- End Right content here -->
+
+        </div>
+        <!-- END wrapper -->
+
+
+        <!-- jQuery  -->
+        <script src="~/assets/js/jquery.min.js"></script>
+        <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="~/assets/js/modernizr.min.js"></script>
+        <script src="~/assets/js/detect.js"></script>
+        <script src="~/assets/js/fastclick.js"></script>
+        <script src="~/assets/js/jquery.slimscroll.js"></script>
+        <script src="~/assets/js/jquery.blockUI.js"></script>
+        <script src="~/assets/js/waves.js"></script>
+        <script src="~/assets/js/jquery.nicescroll.js"></script>
+        <script src="~/assets/js/jquery.scrollTo.min.js"></script>
+
+        <!-- App js -->
+        <script src="~/assets/js/app.js"></script>
+
+    </body>
+</html>

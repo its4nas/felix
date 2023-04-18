@@ -1,0 +1,101 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+@using project3.Views.Shared.Components.SearchBar
+@model IEnumerable<Application>
+@{
+    Layout = "_DashboardLayout";
+
+    SPager pager = new SPager();
+
+    int pageNo = 0;
+
+    if(ViewBag.SearchPager != null)
+    {
+        pager = ViewBag.SearchPager;
+        pageNo = pager.CurrentPage;
+
+    }
+
+}
+
+<!-- boooooooooooooooooooooooooooooooooooooooooooooooooody -->
+                            
+
+        <div class="row">
+
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success mini-stat">
+                    <div class="p-3 mini-stat-desc">
+                        <div class="clearfix">
+                            <h6 class="text-uppercase mt-0 float-left text-white">Applications</h6>
+                            <h4 class="mb-3 mt-0 float-right" style="text-align:center">@Model.Count()</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="mt-0 header-title mb-4" >Applications</h4>
+                        <div>
+                            <div class="col-12 p-0  content-end" style="text-align:end">
+                                <form asp-controller="Company" asp-action="application_list">
+                                    <span class="btn-group">
+                                        <input class="form-control" type="Date" name="dateTime"/>
+                                        <input class="p-1 mdi-wifi-strength-2-lock btn btn-sm btn-warning" type="submit" style="color:black;" value="Filter" />
+                                    </span>
+                                </form>
+                            </div>
+                        </div>
+                        <a asp-action="delete_all" asp-controller="Company" onclick="return confirm('Delete All Applications?');" class="btn btn-danger">Delete All</a>
+                        <a class="btn btn-secondary button-html5" onclick="return window.print();">Print</a>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"><i class="@ViewData["SortIconId"]" arial-hidden="true"></i><a asp-action="application_list" asp-route-sortExpression="@ViewData["SortPerAppId"]"  style="color:white"> Application Id</a></th>
+                                        <th scope="col"><i class="@ViewData["SortIconId"]" arial-hidden="true"></i><a asp-action="application_list" asp-route-sortExpression="@ViewData["SortPerCompId"]"  style="color:white"> Company Id</a></th>
+                                        <th scope="col"><i class="@ViewData["SortIconId"]" arial-hidden="true"></i><a asp-action="application_list" asp-route-sortExpression="@ViewData["SortPerJobId"]"  style="color:white"> Job Id</a></th>
+                                        <th scope="col">Date of App</th>
+                                        <th scope="col">CV</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Application app in Model)
+                                    {
+                                        @if (app.company_id == Accessor.HttpContext.Session.GetInt32("companyID"))
+                                        {
+                                    @if (app.company_id == Accessor.HttpContext.Session.GetInt32("companyID"))
+                                    {
+                                        <tr>
+                                            <th scope="row">@app.app_id</th>
+                                                <td>@app.company_id</td>
+                                                <td>@app.job_id</td>
+                                                <td>@app.date_of_app</td>
+                                                <td>@app.CV</td>
+                                                <td> 
+                                            
+                                    <a asp-action="DeleteApp" asp-controller="Company" asp-route-id="@app.app_id" style="color: #ff4040;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                        </svg></a>
+                                </td>
+                                            </tr>}
+                                        }
+
+                                    }
+
+                                </tbody>
+                            </table>
+                            <vc:search-bar search-pager = "@ViewBag.SearchPager" bottom-bar="true"></vc:search-bar>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end colm -->
+
+
+</div>
+    

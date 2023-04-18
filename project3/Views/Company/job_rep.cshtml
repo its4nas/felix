@@ -1,0 +1,36 @@
+﻿@using project3.Data
+@using project3.Models
+@model job
+@inject FelixDbContext context
+@{
+    Layout = "_DashboardLayout";
+    List<Application> applications = context.Applications.ToList();
+
+}
+
+<h1>Table</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            
+            <th scope="col">App ID</th>
+            <th scope="col">Company ID</th>
+            <th scope="col">Job ID</th>
+            <th scope="col">CV</th>
+            <th scope="col">Date of App</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var jobs in applications){
+        <tr>
+            @if(jobs.job_id == @Model.job_id){
+            <td>@jobs.app_id</td>
+            <td>@jobs.company_id</td>
+            <td>@jobs.job_id</td>
+            <td>@jobs.CV</td>
+            <td>@jobs.date_of_app</td>}
+        </tr>
+        }                                          
+    </tbody>
+</table>

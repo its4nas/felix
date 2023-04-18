@@ -1,0 +1,43 @@
+﻿@using project3.Views.Shared.Components.SearchBar
+@model SPager
+
+<nav aria-label="...">
+        @if (Model.TotalPages > 0)
+        {
+            <ul class="pagination justify-content-center">
+                @if(Model.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="@Model.Controller" asp-action="@Model.Action" asp-route-pg="1">Fisrt</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="@Model.Controller" asp-action="@Model.Action" asp-route-pg="@(Model.CurrentPage -1)">Previous</a>
+                    </li>
+                }
+                @for (var pge = Model.StartPage; pge <= Model.EndPage; pge++)
+                {
+                                
+                    <li class="page-item @(pge == Model.CurrentPage ? "active" : "") ">
+                        <a class="page-link" asp-controller="@Model.Controller" asp-action="@Model.Action" asp-route-pg="@pge" > @pge </a>
+                    </li>
+                                
+                    }
+
+                    @if(Model.CurrentPage < Model.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="@Model.Controller" asp-action="@Model.Action" asp-route-pg="@(Model.CurrentPage +1)">Next</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" asp-controller="@Model.Controller" asp-action="@Model.Action" asp-route-pg="@(Model.TotalPages)">Last</a>
+                    </li>
+                }
+            </ul>
+        }
+    </nav>
+
+<div class="container m-0 p-0 btn-group">
+    <div class="col-5 btn-group">
+        Showing @Model.StartRecord to @Model.EndRecord of @Model.TotalItems Rows
+    </div>
+                    

@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Accessor
+@model Application
+@{
+    Layout = "_AdminDashboardLayout";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Application ID:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.app_id
+        </dd>
+        <dt class = "col-sm-2">
+            Application Date:
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.date_of_app
+        </dd>
+        
+    </dl>
+    
+    <form asp-action="DeleteApp" asp-controller="Admin" method="post">
+        <input type="hidden" asp-for="app_id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="application_list" asp-controller="Admin" style="color: #ffc600">Back to List</a>
+    </form>
+</div>

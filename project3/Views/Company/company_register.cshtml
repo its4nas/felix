@@ -1,0 +1,85 @@
+﻿@model company
+@{
+    Layout = "_LogLayout";
+}
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="login-register-form">
+                    <div class="form-holder">
+                        <div class="form-row form-head">
+                            <div class="col-xs-6">
+                                <div class="site-brand" style="color:#ffc600 ; font-size: 25px;"> <b>Felix.com</b> </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-title"><img src="images/lock.svg" alt="">Company Area</div>
+                            </div>
+                        </div>
+                        <div class="form-row form-links">
+                            <div class="col-xs-12">
+                                <a href="#" class="link-to">Register</a> or <a asp-action="CompanyLogin" asp-controller="Access" class="link-to active">Login</a>
+                            </div>
+                        </div>
+                        <form method="post" asp-controller="Company" asp-action="company_register" enctype="multipart/form-data">
+                            @if (ViewData["ValidateMessage"] != null)
+                            {
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12 alert alert-danger">
+                                            <span>@ViewData["ValidateMessage"]</span>
+                                    </div
+                                </div>
+                            </div>
+                            }
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>Copmany Name</label>
+                                    <input asp-for="company_name" class="form-control">
+                                    <span style="color:red;" asp-validation-for="company_name"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>Password</label>
+                                    <input asp-for="password" class="form-control">
+                                    <span style="color:red;" asp-validation-for="password"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>E-mail</label>
+                                    <input asp-for="company_email" class="form-control">
+                                    <span style="color:red;" asp-validation-for="company_email"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>Phone</label>
+                                    <input asp-for="phone" class="form-control">
+                                    <span style="color:red;" asp-validation-for="phone"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>Company Logo</label>
+                                    <input type="file" asp-for="company_image" class="form-control">
+                                    <span style="color:red;" asp-validation-for="company_image"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <div class="submit-holder">
+                                        <button type="submit">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

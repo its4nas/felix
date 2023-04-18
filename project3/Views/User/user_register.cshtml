@@ -1,0 +1,97 @@
+﻿@model user
+@{
+    Layout = "_LogLayout";
+}
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="login-register-form">
+                    <div class="form-holder">
+                        <div class="form-row form-head">
+                            <div class="col-xs-6">
+                                <div class="site-brand" style="color:#ffc600 ; font-size: 25px;"> <b>Felix.com</b> </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-title"><img src="images/lock.svg" alt="">Client Area</div>
+                            </div>
+                        </div>
+                        <div class="form-row form-links">
+                            <div class="col-xs-12">
+                                <a href="#" class="link-to" >Register</a> or <a asp-action="Login" asp-controller="Access" class="link-to active" >Login</a>
+                            </div>
+                        </div>
+                        <form asp-controller="User" asp-action="user_register" method="post">
+                            @if (ViewData["ValidateMessage"] != null)
+                            {
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <div class="col-xs-12 alert alert-danger">
+                                            <span>@ViewData["ValidateMessage"]</span>
+                                    </div
+                                </div>
+                            </div>
+                            }
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>Username</label>
+                                    <input  class="form-control" asp-for="user_name">
+                                    <span style="color:red;" asp-validation-for="user_name"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>Password</label>
+                                    <input class="form-control" asp-for="user_password">
+                                    <span style="color:red;" asp-validation-for="user_password"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>E-mail</label>
+                                    <input class="form-control" asp-for="user_email">
+                                    <span style="color:red;" asp-validation-for="user_email"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>Age</label>
+                                    <input class="form-control" asp-for="user_age">
+                                    <span style="color:red;" asp-validation-for="user_age"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>Phone</label>
+                                    <input class="form-control" type="number" asp-for="user_phone">
+                                    <span style="color:red;" asp-validation-for="user_phone"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <label>Gender</label>
+                                    <select class="form-control" asp-for="gender">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                    <span style="color:red;" asp-validation-for="gender"></span>
+                                </div>
+                            </div>
+                                    <input hidden value="2" asp-for="user_role"/>
+                            <div class="form-row">
+                                <div class="col-xs-12">
+                                    <div class="submit-holder">
+                                        <button type="submit">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,36 @@
+﻿@using project3.Data
+@using project3.Models
+@model user
+@inject FelixDbContext context
+@{
+    Layout = "_AdminDashboardLayout";
+    List<Application> applications = context.Applications.ToList();
+
+}
+
+<h1>Table</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            
+            <th scope="col">App ID</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Company ID</th>
+            <th scope="col"> CV</th>
+            <th scope="col">Date of App</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var user in applications){
+        <tr>
+            @if(user.user_id == @Model.user_id){
+            <td>@user.app_id</td>
+            <td>@user.user_id</td>
+            <td>@user.company_id</td>
+            <td>@user.CV</td>
+            <td>@user.date_of_app</td>}
+        </tr>
+        }                                          
+    </tbody>
+</table>
